@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://scripts/player.gd" type="Script" id=1]
 [ext_resource path="res://font/montserrat.otf" type="DynamicFontData" id=2]
@@ -10,6 +10,7 @@
 [ext_resource path="res://images/knight/knight_blue_idle0003.png" type="Texture" id=8]
 [ext_resource path="res://images/knight/knight_blue_idle0000.png" type="Texture" id=9]
 [ext_resource path="res://images/knight/knight_blue_idle0001.png" type="Texture" id=10]
+[ext_resource path="res://images/demonic_buster_sword.png" type="Texture" id=11]
 
 [sub_resource type="SpriteFrames" id=9]
 animations = [ {
@@ -37,11 +38,17 @@ script = ExtResource( 1 )
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 frames = SubResource( 9 )
 animation = "idle"
-frame = 2
 playing = true
 
 [node name="shape" type="CollisionShape2D" parent="."]
+visible = false
 shape = SubResource( 10 )
+
+[node name="Sprite" type="Sprite" parent="."]
+position = Vector2( 12, -17 )
+rotation = 0.354302
+scale = Vector2( 1, 1 )
+texture = ExtResource( 11 )
 
 [node name="label" type="Label" parent="."]
 margin_left = -28.0

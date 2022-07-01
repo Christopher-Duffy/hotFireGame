@@ -81,28 +81,20 @@ func makeChunk(pathNode):
 	var y = pathNode.y
 	for i in range( (x*SIZE) , ((x+1)*SIZE) ):
 		for j in range( (y*SIZE) , ((y+1)*SIZE) ):
-			if(i%2):
-				if (j%2):
-					set_cell(i,j,1)
-				else:
-					set_cell(i,j,2)
-			else:
-				if (j%2):
-					set_cell(i,j,2)
-				else:
-					set_cell(i,j,1)
+			set_cell(i,j,0)
+			
 	if pathNode.north:
 		for i in range( (x*SIZE) , ((x+1)*SIZE) ):
-			set_cell(i,y*SIZE,0)
+			set_cell(i,y*SIZE,1)
 	if pathNode.south:
 		for i in range( (x*SIZE) , ((x+1)*SIZE) ):
-			set_cell(i,(y+1)*SIZE-1,0)
+			set_cell(i,(y+1)*SIZE-1,1)
 	if pathNode.west:
 		for i in range( (y*SIZE) , ((y+1)*SIZE) ):
-			set_cell(x*SIZE,i,0)
+			set_cell(x*SIZE,i,1)
 	if pathNode.east:
 		for i in range( (y*SIZE) , ((y+1)*SIZE) ):
-			set_cell((x+1)*SIZE-1,i,0)
+			set_cell((x+1)*SIZE-1,i,1)
 	
 func makeMapFromPath(pathNodes):
 	for row in pathNodes:
