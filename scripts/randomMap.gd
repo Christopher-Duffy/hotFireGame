@@ -2,6 +2,25 @@ extends TileMap
 
 var SIZE = 10
 
+enum{
+	floor1,
+	wall1,
+	pillartopleft1,
+	pillartopright1,
+	topwallleft1,
+	topwallright1,
+	pillarbottomleft1,
+	pillarbottomright1,
+	righttopwall1,
+	lefttopwall1,
+	topwall1,
+	walltop1,
+	wallfloor1,
+	rightwallcorner1,
+	leftwallcorner1,
+	blackvoid
+}
+
 var rng = RandomNumberGenerator.new()
 # Declare member variables here. Examples:
 # var a = 2
@@ -14,6 +33,10 @@ class PathNode:
 	var south = true
 	var east = true
 	var west = true
+	var northNode = null
+	var southNode=null
+	var westNode=null
+	var eastNode=null
 	var fromCell = null
 
 # Called when the node enters the scene tree for the first time.
@@ -81,31 +104,52 @@ func makeChunk(pathNode):
 	var y = pathNode.y
 	for i in range( (x*SIZE) , ((x+1)*SIZE) ):
 		for j in range( (y*SIZE) , ((y+1)*SIZE) ):
-			set_cell(i,j,0)
-			
-	if pathNode.north:
-		for i in range( (x*SIZE) , ((x+1)*SIZE) ):
-			set_cell(i,y*SIZE,1)
+			set_cell(i,j,floor1)
+
+	if pathNode.east:
+		for i in range( (y*SIZE) , ((y+1)*SIZE)):
+			set_cell(((x+1)*SIZE)-2,i,topwallleft1)
+			set_cell(((x+1)*SIZE)-1,i,topwallright1)
+		
 	if pathNode.south:
 		for i in range( (x*SIZE) , ((x+1)*SIZE) ):
-			set_cell(i,(y+1)*SIZE-1,1)
-	if pathNode.west:
-		for i in range( (y*SIZE) , ((y+1)*SIZE) ):
-			set_cell(x*SIZE,i,1)
-	if pathNode.east:
-		for i in range( (y*SIZE) , ((y+1)*SIZE) ):
-			set_cell((x+1)*SIZE-1,i,1)
+			set_cell(i,(y+1)*SIZE-2,walltop1)
+			set_cell(i,(y+1)*SIZE-1,wallfloor1)
 	
 func makeMapFromPath(pathNodes):
 	for row in pathNodes:
 		for node in row:
 			makeChunk(node)
 
+func makeBorder(w,h):
+	for i in range(w):
+		set_cell(i,0,walltop1)
+		set_cell(i,1,wall1)
+		set_cell(i,2,wallfloor1)
+		set_cell(i,h-2,topwall1)
+		set_cell(i,h-1,-1)
+	for i in range(h-2):
+		set_cell(0,i,topwallright1)
+		set_cell(w-1,i,topwallleft1)
+	set_cell(0,h-2,rightwallcorner1)
+	set_cell(w-1,h-2,leftwallcorner1)
+
+func setNeighbors (pathNodes):
+	for i in range(1,pathNodes.size()-1):
+		for j in range(1,pathNodes[i].size()-1):
+			pathNodes[i][j].northNode=pathNodes[i][j-1]
+			pathNodes[i][j].southNode=pathNodes[i][j+1]
+			pathNodes[i][j].eastNode=pathNodes[i-1][j]
+			pathNodes[i][j].westNode=pathNodes[i+1][j-1]
+	return pathNodes
+
 func makeRandom(width,height):
 	rng.randomize()
 	clear()
 	var pathNodes = makePath(width,height)
+	pathNodes = setNeighbors(pathNodes)
 	makeMapFromPath(pathNodes)
+	makeBorder(width*SIZE,height*SIZE)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

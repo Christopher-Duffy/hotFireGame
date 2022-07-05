@@ -7,6 +7,8 @@ const DEFAULT_PORT = 10567
 
 # Max number of players.
 const MAX_PEERS = 12
+const MAP_WIDTH = 7
+const MAP_HEIGHT = 7 
 
 var peer = null
 
@@ -16,6 +18,8 @@ var player_name = "The Warrior"
 # Names for remote players in id:name format.
 var players = {}
 var players_ready = []
+
+var slimeScene= load("res://scenes/slime.tscn")
 
 # Signals to let lobby GUI know what's going on.
 signal player_list_changed()
@@ -77,9 +81,9 @@ remote func pre_start_game(spawn_points):
 	# Change scene.
 	var world = load("res://scenes/world.tscn").instance()
 	get_tree().get_root().add_child(world)
-	world.get_node("TileMap").makeRandom(7,7)
+	
+	world.get_node("TileMap").makeRandom(MAP_WIDTH,MAP_HEIGHT)
 	get_tree().get_root().get_node("Lobby").hide()
-
 	var player_scene = load("res://scenes/player.tscn")
 
 	for p_id in spawn_points:
@@ -98,7 +102,7 @@ remote func pre_start_game(spawn_points):
 			player.set_player_name(players[p_id])
 
 		world.get_node("Players").add_child(player)
-
+		makeSlimes(world)
 	if not get_tree().is_network_server():
 		# Tell server we are ready to start.
 		rpc_id(1, "ready_to_start", get_tree().get_network_unique_id())
@@ -109,7 +113,19 @@ remote func pre_start_game(spawn_points):
 remote func post_start_game():
 	get_tree().set_pause(false) # Unpause and unleash the game!
 
+func makeSlimes(world):
+	for i in range(MAP_WIDTH):
+		for j in range(MAP_HEIGHT):
+			if(i==0&&j==0):
+				pass
+			else:
+				var slime = slimeScene.instance()
+				world.get_node("Slimes").add_child(slime)
+				slime.position.x = i*MAP_WIDTH*16
+				slime.position.y = j*MAP_HEIGHT*16
 
+			
+	
 remote func ready_to_start(id):
 	assert(get_tree().is_network_server())
 
