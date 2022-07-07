@@ -38,6 +38,19 @@ class PathNode:
 	var westNode=null
 	var eastNode=null
 	var fromCell = null
+	func to_dict():
+		return {'x': x, 'y': y, 'visited': visited, 'north': north, 'south': south, 'east': east, 'west': west}
+
+func dictToPathNode(d):
+	var p = PathNode.new()
+	p.x = d['x']
+	p.y = d['y']
+	p.visited = d['visited']
+	p.north = d['north']
+	p.south = d['south']
+	p.east = d['east']
+	p.west = d['west']
+	return p
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -147,6 +160,21 @@ func makeRandom(width,height):
 	rng.randomize()
 	clear()
 	var pathNodes = makePath(width,height)
+	var serialized = []
+	for i in pathNodes:
+		var si = []
+		serialized.append(si)
+		for j in i:
+			si.append(j.to_dict())
+	pathNodes = setNeighbors(pathNodes)
+	makeMapFromPath(pathNodes)
+	makeBorder(width*SIZE,height*SIZE)
+	return serialized
+
+func makeFromPathNodes(width,height,pathNodes):
+	for i in range(0,pathNodes.size()):
+		for j in range(0,pathNodes[i].size()):
+			pathNodes[i][j] = dictToPathNode(pathNodes[i][j])
 	pathNodes = setNeighbors(pathNodes)
 	makeMapFromPath(pathNodes)
 	makeBorder(width*SIZE,height*SIZE)

@@ -16,6 +16,7 @@ func _on_body_entered(body):
 	
 func _on_body_exited(body):
 	player=null
+		
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
 #	pass
@@ -24,9 +25,17 @@ func _physics_process(delta):
 		var motion = Vector2()
 		motion += (player.position - self.position).normalized()
 		move_and_slide(motion*MOTION_SPEED)
+		if is_network_master():
+			rpc_unreliable('puppet_position', self.position)
+
+puppet func puppet_position(pos):
+	position = pos
 
 
 func _on_hurtbox_area_entered(area):
-	if(area.name=="SwordHitBox"):
-		print('slime die')
-		queue_free()
+	if area.name=="SwordHitBox":
+		rpc('kill_slime')
+
+remotesync func kill_slime():
+	print('slime die')
+	queue_free()
