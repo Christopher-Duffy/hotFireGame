@@ -119,15 +119,14 @@ remote func post_start_game():
 	get_tree().set_pause(false) # Unpause and unleash the game!
 
 func makeSlimes(world):
-	for i in range(MAP_WIDTH):
-		for j in range(MAP_HEIGHT):
-			if(i==0&&j==0):
-				pass
-			else:
-				var slime = slimeScene.instance()
-				world.get_node("Slimes").add_child(slime)
-				slime.position.x = i*MAP_WIDTH*16
-				slime.position.y = j*MAP_HEIGHT*16
+	for i in range(1, MAP_WIDTH-1):
+		for j in range(1, MAP_HEIGHT-1):
+			var slime = slimeScene.instance()
+			slime.set_network_master(1)
+			slime.set_name('slime-' + str(i) + '-' + str(j))
+			world.get_node("Slimes").add_child(slime)
+			slime.position.x = i*MAP_WIDTH*16
+			slime.position.y = j*MAP_HEIGHT*16
 
 			
 	

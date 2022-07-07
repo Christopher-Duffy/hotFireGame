@@ -5,8 +5,8 @@ signal killed()
 
 const MOTION_SPEED = 90.0
 
-puppet var puppet_pos = Vector2()
-puppet var puppet_motion = Vector2()
+var puppet_pos = Vector2()
+var puppet_motion = Vector2()
 
 var max_health=30
 var health = max_health
@@ -15,6 +15,10 @@ onready var immunityTimer = $DamagedImmunity
 onready var damageAnimations = $DamageAnimations
 
 var rng = RandomNumberGenerator.new()
+
+puppet func set_puppet_physics(pos, mot):
+	puppet_pos = pos
+	puppet_motion = mot
 
 func _physics_process(_delta):
 	var motion = Vector2()
@@ -33,8 +37,7 @@ func _physics_process(_delta):
 
 			$WeaponAnimations.play("attack")
 	
-		rset("puppet_motion", motion)
-		rset("puppet_pos", position)
+		rpc_unreliable('set_puppet_physics', position, motion)
 	else:
 		position = puppet_pos
 		motion = puppet_motion
