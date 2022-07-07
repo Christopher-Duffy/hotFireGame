@@ -237,7 +237,7 @@ offset = Vector2( 0, -6 )
 [node name="AnimatedSprite" type="AnimatedSprite" parent="spriteWrapper"]
 frames = SubResource( 9 )
 animation = "idle"
-frame = 1
+frame = 2
 playing = true
 
 [node name="SwordHitBox" type="Area2D" parent="spriteWrapper"]

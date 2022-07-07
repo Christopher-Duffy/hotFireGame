@@ -76,13 +76,17 @@ func unregister_player(id):
 	players.erase(id)
 	emit_signal("player_list_changed")
 
-
-remote func pre_start_game(spawn_points):
+remote func pre_start_game(spawn_points, path_nodes=null):
 	# Change scene.
 	var world = load("res://scenes/world.tscn").instance()
+	world.set_network_master(1)
+	world.set_name("world")
 	get_tree().get_root().add_child(world)
 	
-	world.get_node("TileMap").makeRandom(MAP_WIDTH,MAP_HEIGHT)
+	if path_nodes == null:
+		path_nodes = world.get_node("TileMap").makeRandom(MAP_WIDTH,MAP_HEIGHT)
+	else:
+		world.get_node("TileMap").makeFromPathNodes(MAP_WIDTH,MAP_HEIGHT,path_nodes)
 	get_tree().get_root().get_node("Lobby").hide()
 	var player_scene = load("res://scenes/player.tscn")
 
@@ -102,12 +106,13 @@ remote func pre_start_game(spawn_points):
 			player.set_player_name(players[p_id])
 
 		world.get_node("Players").add_child(player)
-		makeSlimes(world)
+	makeSlimes(world)
 	if not get_tree().is_network_server():
 		# Tell server we are ready to start.
 		rpc_id(1, "ready_to_start", get_tree().get_network_unique_id())
 	elif players.size() == 0:
 		post_start_game()
+	return path_nodes
 
 
 remote func post_start_game():
@@ -133,8 +138,9 @@ remote func ready_to_start(id):
 		players_ready.append(id)
 
 	if players_ready.size() == players.size():
-		for p in players:
-			rpc_id(p, "post_start_game")
+		#for p in players:
+		#	rpc_id(p, "post_start_game")
+		rpc("post_start_game")
 		post_start_game()
 
 
@@ -170,11 +176,12 @@ func begin_game():
 	for p in players:
 		spawn_points[p] = spawn_point_idx
 		spawn_point_idx += 1
+	
+	var path_nodes = pre_start_game(spawn_points)
+	
 	# Call to pre-start game with the spawn points.
 	for p in players:
-		rpc_id(p, "pre_start_game", spawn_points)
-
-	pre_start_game(spawn_points)
+		rpc_id(p, "pre_start_game", spawn_points, path_nodes)
 
 
 func end_game():
