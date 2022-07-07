@@ -7,6 +7,7 @@ func _ready():
 	gamestate.connect("player_list_changed", self, "refresh_lobby")
 	gamestate.connect("game_ended", self, "_on_game_ended")
 	gamestate.connect("game_error", self, "_on_game_error")
+	
 	# Set the player name according to the system username. Fallback to the path.
 	if OS.has_environment("USERNAME"):
 		$Connect/Name.text = OS.get_environment("USERNAME")

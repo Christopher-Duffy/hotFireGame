@@ -1,0 +1,42 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://images/knight/knight_blue_idle0000.png" type="Texture" id=1]
+[ext_resource path="res://images/knight/knight_blue_idle0003.png" type="Texture" id=2]
+[ext_resource path="res://images/icon.png" type="Texture" id=3]
+[ext_resource path="res://images/knight/knight_blue_idle0002.png" type="Texture" id=4]
+[ext_resource path="res://images/knight/knight_blue_idle0001.png" type="Texture" id=5]
+
+[sub_resource type="SpriteFrames" id=1]
+animations = [ {
+"frames": [ ExtResource( 1 ), ExtResource( 5 ), ExtResource( 4 ), ExtResource( 2 ) ],
+"loop": true,
+"name": "idle",
+"speed": 8.0
+} ]
+
+[node name="Control" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="Panel" type="Panel" parent="."]
+margin_left = 50.0
+margin_top = 50.0
+margin_right = 970.0
+margin_bottom = 550.0
+
+[node name="Node2D" type="Node2D" parent="Panel"]
+position = Vector2( 86, 81 )
+
+[node name="weapon" type="Sprite" parent="Panel/Node2D"]
+position = Vector2( 233, 275 )
+scale = Vector2( 15, 15 )
+texture = ExtResource( 3 )
+offset = Vector2( 0, -24 )
+
+[node name="player" type="AnimatedSprite" parent="Panel/Node2D"]
+position = Vector2( 150, 236 )
+scale = Vector2( 15, 15 )
+frames = SubResource( 1 )
+animation = "idle"
+frame = 1
+playing = true

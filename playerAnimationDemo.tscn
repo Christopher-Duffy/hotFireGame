@@ -1,0 +1,117 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://scenes/playerSprite.tscn" type="PackedScene" id=1]
+[ext_resource path="res://scripts/playerAnimationDemo.gd" type="Script" id=2]
+
+[node name="Control" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Panel" type="Panel" parent="."]
+margin_left = -1.0
+margin_top = -3.0
+margin_right = 1026.0
+margin_bottom = 601.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="2hand" type="OptionButton" parent="Panel"]
+margin_left = 788.0
+margin_top = 257.0
+margin_right = 963.0
+margin_bottom = 307.0
+text = "Great Club"
+items = [ "Great Club", null, false, 0, null, "Buster Sword", null, false, 1, null, "Golden Buster Sword", null, false, 2, null, "Demonic Buster Sword", null, false, 3, null, "Great Axe", null, false, 4, null ]
+selected = 0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="mainhand" type="OptionButton" parent="Panel"]
+margin_left = 791.0
+margin_top = 323.0
+margin_right = 962.0
+margin_bottom = 375.0
+text = "sword"
+items = [ "sword", null, false, 0, null, "axe", null, false, 1, null, "club", null, false, 2, null, "longsword", null, false, 3, null, "magic wand", null, false, 4, null ]
+selected = 0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="OptionButton" type="OptionButton" parent="Panel"]
+margin_left = 794.0
+margin_top = 393.0
+margin_right = 961.0
+margin_bottom = 449.0
+text = "buckler"
+items = [ "buckler", null, false, 0, null, "dagger", null, false, 1, null, "holySymbol", null, false, 2, null, "kiteShield", null, false, 3, null, "voodooHead", null, false, 4, null ]
+selected = 0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="OptionButton2" type="OptionButton" parent="Panel"]
+margin_left = 186.0
+margin_top = 64.0
+margin_right = 299.0
+margin_bottom = 111.0
+text = "untinted"
+items = [ "untinted", null, false, 0, null, "dark", null, false, 1, null, "ruby", null, false, 2, null, "emerald", null, false, 3, null, "sapphire", null, false, 4, null, "gold", null, false, 5, null ]
+selected = 0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="armortype" type="OptionButton" parent="Panel"]
+margin_left = 58.0
+margin_top = 125.0
+margin_right = 162.0
+margin_bottom = 168.0
+text = "chain"
+items = [ "chain", null, false, 0, null, "gi", null, false, 1, null, "plate", null, false, 2, null, "robe", null, false, 3, null, "vest", null, false, 4, null ]
+selected = 0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="OptionButton4" type="OptionButton" parent="Panel"]
+margin_left = 189.0
+margin_top = 127.0
+margin_right = 298.0
+margin_bottom = 174.0
+text = "untinted"
+items = [ "untinted", null, false, 0, null, "dark", null, false, 1, null, "ruby", null, false, 2, null, "emerald", null, false, 3, null, "sapphire", null, false, 4, null, "gold", null, false, 5, null ]
+selected = 0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="playerSprite" parent="." instance=ExtResource( 1 )]
+position = Vector2( 487, 361 )
+scale = Vector2( 10, 10 )
+
+[node name="hatButton" type="OptionButton" parent="."]
+margin_left = 41.0
+margin_top = 63.0
+margin_right = 163.0
+margin_bottom = 108.0
+text = "hornedHelmet"
+items = [ "hornedHelmet", null, false, 0, null, "ninjaHood", null, false, 1, null, "plateHelm", null, false, 2, null, "skullCap", null, false, 3, null, "wizardHat", null, false, 4, null ]
+selected = 0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[connection signal="item_selected" from="Panel/2hand" to="." method="_on_2hand_selected"]
+[connection signal="item_selected" from="Panel/mainhand" to="." method="_on_mainhand_item_selected"]
+[connection signal="item_selected" from="Panel/OptionButton" to="." method="_on_OptionButton_item_selected"]
+[connection signal="item_selected" from="Panel/OptionButton2" to="." method="_on_OptionButton2_item_selected"]
+[connection signal="item_selected" from="Panel/armortype" to="." method="_on_armortype_item_selected"]
+[connection signal="item_selected" from="Panel/OptionButton4" to="." method="_on_OptionButton4_item_selected"]
+[connection signal="item_selected" from="hatButton" to="." method="_on_hatButton_item_selected"]
