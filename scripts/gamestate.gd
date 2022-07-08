@@ -15,6 +15,8 @@ var peer = null
 # Name for my player.
 var player_name = "The Warrior"
 
+var playerNode = null
+
 # Names for remote players in id:name format.
 var players = {}
 var players_ready = []
@@ -101,6 +103,7 @@ remote func pre_start_game(spawn_points, path_nodes=null):
 		if p_id == get_tree().get_network_unique_id():
 			# If node for this peer id, set name.
 			player.set_player_name(player_name)
+			playerNode = player
 		else:
 			# Otherwise set name from peer.
 			player.set_player_name(players[p_id])

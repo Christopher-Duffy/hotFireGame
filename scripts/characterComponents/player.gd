@@ -25,7 +25,7 @@ func _physics_process(_delta):
 			motion += Vector2(0, 1)
 		
 		if Input.is_action_pressed("attack"):
-			$Weapon.attack()
+			$weapon.attack()
 		
 		rpc_unreliable('set_puppet_physics', position, motion)
 	else:
@@ -46,10 +46,37 @@ func _physics_process(_delta):
 func set_player_name(new_name):
 	print("set name "+new_name)
 
-
 func _ready():
 	if is_network_master():
 		get_node("camera").current=true
 	puppet_pos = position
 
+func setHat(hat,hatColor):
+	rpc('setHatNetwork',hat,hatColor)
 
+remotesync func setHatNetwork(hat,hatColor):
+	$playerSprite.setHatSprite(hat,hatColor)
+	
+func setArmor(armor,armorColor):
+	rpc('setArmorNetwork',armor,armorColor)
+
+remotesync func setArmorNetwork(armor,armorColor):
+	$playerSprite.setArmorSprite(armor,armorColor)
+
+func setMainHand(mainHand):
+	rpc('setMainHandNetwork',mainHand)
+
+remotesync func setMainHandNetwork(mainHand):
+	$playerSprite.setMainHandSprite(mainHand)
+
+func setOffHand(offHand):
+	rpc('setOffHandNetwork',offHand)
+
+remotesync func setOffHandNetwork(offHand):
+	$playerSprite.setOffHandSprite(offHand)
+
+func setTwoHand(twoHand):
+	rpc('setTwoHandNetwork',twoHand)
+
+remotesync func setTwoHandNetwork(twoHand):
+	$playerSprite.setTwoHandSprite(twoHand)

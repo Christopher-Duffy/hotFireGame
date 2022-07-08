@@ -213,20 +213,20 @@ animations = [ {
 "name": "idle_plate",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 20 ), ExtResource( 6 ), ExtResource( 3 ), ExtResource( 9 ) ],
+"frames": [ ExtResource( 12 ), ExtResource( 18 ), ExtResource( 21 ), ExtResource( 14 ) ],
 "loop": true,
-"name": "idle_chain",
-"speed": 8.0
+"name": "idle_vest",
+"speed": 5.0
 }, {
 "frames": [ ExtResource( 16 ), ExtResource( 10 ), ExtResource( 5 ), ExtResource( 24 ) ],
 "loop": true,
 "name": "idle_robe",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 12 ), ExtResource( 18 ), ExtResource( 21 ), ExtResource( 14 ) ],
+"frames": [ ExtResource( 20 ), ExtResource( 6 ), ExtResource( 3 ), ExtResource( 9 ) ],
 "loop": true,
-"name": "idle_vest",
-"speed": 5.0
+"name": "idle_chain",
+"speed": 8.0
 }, {
 "frames": [ ExtResource( 19 ), ExtResource( 13 ), ExtResource( 1 ), ExtResource( 4 ) ],
 "loop": true,
@@ -253,12 +253,14 @@ animation = "idle"
 frame = 2
 
 [node name="Shirt" type="AnimatedSprite" parent="."]
+visible = false
 modulate = Color( 0.262745, 0.882353, 0.0666667, 1 )
 frames = SubResource( 3 )
 animation = "idle"
 frame = 2
 
 [node name="Skin" type="Sprite" parent="."]
+visible = false
 modulate = Color( 0.835294, 0.694118, 0.517647, 1 )
 position = Vector2( 0, 1 )
 texture = ExtResource( 22 )

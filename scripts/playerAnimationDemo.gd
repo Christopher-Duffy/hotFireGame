@@ -4,14 +4,24 @@ extends Control
 # Declare member variables here. Examples:
 # var a = 2
 # var b = "text"
-
+var thisPlayer
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	print(get_node("/root/world/Players").get_children())
+
 	get_node("playerSprite").get_node("AnimationPlayer").play("idle")
 	pass # Replace with function body.
 
+var hatColor = "untinted"
+var hat = "ninjaHood"
 
+var armorColor = "untinted"
+var armor = "gi"
+
+var mainHand = "sword"
+var offHand = "dagger"
+var twoHand = "buster"
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
 #	pass
@@ -20,104 +30,113 @@ func _ready():
 func _on_2hand_selected(index):
 	match index:
 		0:
-			get_node("playerSprite").setTwoHandSprite("greatclub")
+			twoHand = "greatclub"
 		1:
-			get_node("playerSprite").setTwoHandSprite("buster")
+			twoHand = "buster"
 		2:
-			get_node("playerSprite").setTwoHandSprite("goldenBuster")
+			twoHand = "goldenBuster"
 		3:
-			get_node("playerSprite").setTwoHandSprite("demonicBuster")
+			twoHand = "demonicBuster"
 		4:
-			get_node("playerSprite").setTwoHandSprite("greataxe")
+			twoHand = "greataxe"
+	gamestate.playerNode.setTwoHand(twoHand)
 
 
 func _on_mainhand_item_selected(index):
 	match index:
 		0:
-			get_node("playerSprite").setMainHandSprite("sword")
+			mainHand = "sword"
 		1:
-			get_node("playerSprite").setMainHandSprite("axe")
+			mainHand = "axe"
 		2:
-			get_node("playerSprite").setMainHandSprite("club")
+			mainHand = "club"
 		3:
-			get_node("playerSprite").setMainHandSprite("longsword")
+			mainHand = "longsword"
 		4:
-			get_node("playerSprite").setMainHandSprite("magicWand")
+			mainHand = "magicWand"
+	gamestate.playerNode.setMainHand(mainHand)
 
 
 func _on_OptionButton_item_selected(index):
 	match index:
 		0:
-			get_node("playerSprite").setOffHandSprite("buckler")
+			offHand = "buckler"
 		1:
-			get_node("playerSprite").setOffHandSprite("dagger")
+			offHand = "dagger"
 		2:
-			get_node("playerSprite").setOffHandSprite("holySymbol")
+			offHand = "holySymbol"
 		3:
-			get_node("playerSprite").setOffHandSprite("kiteShield")
+			offHand = "kiteShield"
 		4:
-			get_node("playerSprite").setOffHandSprite("voodooHead")
-
+			offHand = "voodooHead"
+	gamestate.playerNode.setOffHand(offHand)
 
 func _on_OptionButton2_item_selected(index):
-		match index:
-			0:
-				get_node("playerSprite").setHatSpriteColor("untinted")
-			1:
-				get_node("playerSprite").setHatSpriteColor("dark")
-			2:
-				get_node("playerSprite").setHatSpriteColor("ruby")
-			3:
-				get_node("playerSprite").setHatSpriteColor("emerald")
-			4:
-				get_node("playerSprite").setHatSpriteColor("sapphire")
-			5:
-				get_node("playerSprite").setHatSpriteColor("gold")
+	match index:
+		0:
+			hatColor="untinted"
+		1:
+			hatColor="dark"
+		2:
+			hatColor="ruby"
+		3:
+			hatColor="emerald"
+		4:
+			hatColor="sapphire"
+		5:
+			hatColor="gold"
+	get_node("playerSprite").setHatSprite(hat,hatColor)
+	gamestate.playerNode.setHat(hat,hatColor)
 
 
 func _on_OptionButton4_item_selected(index):
-		match index:
-			0:
-				get_node("playerSprite").setArmorSpriteColor("untinted")
-			1:
-				get_node("playerSprite").setArmorSpriteColor("dark")
-			2:
-				get_node("playerSprite").setArmorSpriteColor("ruby")
-			3:
-				get_node("playerSprite").setArmorSpriteColor("emerald")
-			4:
-				get_node("playerSprite").setArmorSpriteColor("sapphire")
-			5:
-				get_node("playerSprite").setArmorSpriteColor("gold")
+	match index:
+		0:
+			armorColor="untinted"
+		1:
+			armorColor="dark"
+		2:
+			armorColor="ruby"
+		3:
+			armorColor="emerald"
+		4:
+			armorColor="sapphire"
+		5:
+			armorColor="gold"
+	get_node("playerSprite").setArmorSprite(armor,armorColor)
+	gamestate.playerNode.setArmor(armor,armorColor)
 
 
 func _on_hatButton_item_selected(index):
 	match index:
-			0:
-				get_node("playerSprite").setHatSprite("hornedHelmet")
-			1:
-				get_node("playerSprite").setHatSprite("ninjaHood")
-			2:
-				get_node("playerSprite").setHatSprite("plateHelm")
-			3:
-				get_node("playerSprite").setHatSprite("skullCap")
-			4:
-				get_node("playerSprite").setHatSprite("wizardHat")
-
+		0:
+			hat="hornedHelmet"
+		1:
+			hat="ninjaHood"
+		2:
+			hat="plateHelm"
+		3:
+			hat="skullCap"
+		4:
+			hat="wizardHat"
+	get_node("playerSprite").setHatSprite(hat,hatColor)
+	gamestate.playerNode.setHat(hat,hatColor)
 
 
 func _on_armortype_item_selected(index):
 	match index:
-			0:
-				get_node("playerSprite").setArmorSprite("chain")
-			1:
-				get_node("playerSprite").setArmorSprite("gi")
-			2:
-				get_node("playerSprite").setArmorSprite("plate")
-			3:
-				get_node("playerSprite").setArmorSprite("robe")
-			4:
-				get_node("playerSprite").setArmorSprite("vest")
+		0:
+			armor="chain"
+		1:
+			armor="gi"
+		2:
+			armor="plate"
+		3:
+			armor="robe"
+		4:
+			armor="vest"
+	get_node("playerSprite").setArmorSprite(armor,armorColor)
+	gamestate.playerNode.setArmor(armor,armorColor)
 
 
 func _on_Button_pressed():

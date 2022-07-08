@@ -67,19 +67,15 @@ func setOffHandSprite(imgName):
 	offHandSprite.visible = true
 	offHandSprite.set_texture(weaponDict[imgName])
 	
-func setHatSprite(imgName):
+func setHatSprite(imgName, color):
 	hatSprite.set_texture(hatDict[imgName])
+	hatSprite.modulate = colorDict[color]
 
-func setArmorSprite(type):
+func setArmorSprite(type,color):
 	armorType = type
 	armorSprite.animation = "idle_"+armorType
-	
-func setHatSpriteColor(color):
-	hatSprite.modulate = colorDict[color]
-	
-func setArmorSpriteColor(color):
 	armorSprite.modulate = colorDict[color]
-
+	
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass
