@@ -19,12 +19,12 @@ func getTileDict():
 	for id in tile_set.get_tiles_ids():
 		var fullname = tile_set.tile_get_name(id)
 		var namesplit = fullname.split(' ')
-		var weight = 1
+		var weight = 10
 		var tilename = '(blank)'
 		if len(namesplit) > 1:
 			tilename = namesplit[1]
 		if len(namesplit) > 2:
-			weight = float(namesplit[2])
+			weight = int(namesplit[2])
 		var tile = {
 			id = id,
 			fullname = fullname,
@@ -32,10 +32,10 @@ func getTileDict():
 			name = tilename,
 			weight = weight
 		}
-		if tile.type in tiles:
+		if not tile.type in tiles:
+			tiles[tile.type] = []
+		for i in range(weight):
 			tiles[tile.type].append(tile)
-		else:
-			tiles[tile.type] = [tile]
 	return tiles
 
 onready var TILES = getTileDict()
@@ -44,7 +44,8 @@ func getTile(type, pos=null):
 	if pos != null:
 		type += '-' + pos
 	if type in TILES:
-		return TILES[type][0].id
+		var i = rng.randi_range(0, len(TILES[type])-1)
+		return TILES[type][i].id
 	else:
 		return TILES[ROOF][0].id
 
