@@ -28,9 +28,9 @@
 [ext_resource path="res://images/dude/armor/dude_plate0002.png" type="Texture" id=26]
 [ext_resource path="res://scripts/characterComponents/playerSprite.gd" type="Script" id=27]
 [ext_resource path="res://images/weapons/2hand/gronkclub.png" type="Texture" id=28]
-[ext_resource path="res://images/weapons/offHand/kiteShield.png" type="Texture" id=29]
+[ext_resource path="res://images/dude/hats/ninjaHood.png" type="Texture" id=29]
 [ext_resource path="res://images/weapons/mainHand/sword.png" type="Texture" id=30]
-[ext_resource path="res://images/dude/hats/plateHelm.png" type="Texture" id=31]
+[ext_resource path="res://images/weapons/offHand/dagger.png" type="Texture" id=31]
 [ext_resource path="res://images/dude/dude_shirt_run0001.png" type="Texture" id=32]
 [ext_resource path="res://images/dude/dude_run0003.png" type="Texture" id=33]
 [ext_resource path="res://images/dude/dude_shirt_run0003.png" type="Texture" id=34]
@@ -213,15 +213,15 @@ animations = [ {
 "name": "idle_plate",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 16 ), ExtResource( 10 ), ExtResource( 5 ), ExtResource( 24 ) ],
-"loop": true,
-"name": "idle_robe",
-"speed": 5.0
-}, {
 "frames": [ ExtResource( 20 ), ExtResource( 6 ), ExtResource( 3 ), ExtResource( 9 ) ],
 "loop": true,
 "name": "idle_chain",
 "speed": 8.0
+}, {
+"frames": [ ExtResource( 16 ), ExtResource( 10 ), ExtResource( 5 ), ExtResource( 24 ) ],
+"loop": true,
+"name": "idle_robe",
+"speed": 5.0
 }, {
 "frames": [ ExtResource( 12 ), ExtResource( 18 ), ExtResource( 21 ), ExtResource( 14 ) ],
 "loop": true,
@@ -265,22 +265,20 @@ texture = ExtResource( 22 )
 offset = Vector2( 0, -7 )
 
 [node name="Armor" type="AnimatedSprite" parent="."]
-visible = false
+modulate = Color( 0.203922, 0.203922, 0.203922, 1 )
 frames = SubResource( 4 )
-animation = "idle_plate"
-frame = 2
+animation = "idle_gi"
 
 [node name="Hat" type="Sprite" parent="."]
-visible = false
+modulate = Color( 0.235294, 0.235294, 0.235294, 1 )
 position = Vector2( 0, 1 )
-texture = ExtResource( 31 )
+texture = ExtResource( 29 )
 offset = Vector2( 0, -7 )
 
 [node name="OffHand" type="Sprite" parent="."]
-visible = false
 position = Vector2( -5, 5 )
 rotation = -0.0447528
-texture = ExtResource( 29 )
+texture = ExtResource( 31 )
 
 [node name="2Hand" type="Sprite" parent="."]
 visible = false

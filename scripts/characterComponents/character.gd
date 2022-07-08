@@ -21,11 +21,6 @@ export var moveSpeed:= 60.0
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass # Replace with function body.
-
-func _on_HurtBox_area_entered(area):
-	if (area.name == "SwordHitBox"):
-		rpc("killSelf")
-	pass # Replace with function body.
 	
 remotesync func killSelf():
 	queue_free()

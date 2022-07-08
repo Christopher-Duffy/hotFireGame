@@ -39,6 +39,7 @@ shape = SubResource( 2 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="." index="3"]
 frames = SubResource( 4 )
+frame = 4
 playing = true
 
 [node name="AwareArea" parent="AwareBox" index="0"]

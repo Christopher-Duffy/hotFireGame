@@ -118,3 +118,8 @@ func _on_armortype_item_selected(index):
 				get_node("playerSprite").setArmorSprite("robe")
 			4:
 				get_node("playerSprite").setArmorSprite("vest")
+
+
+func _on_Button_pressed():
+	self.visible = !self.visible
+	pass # Replace with function body.

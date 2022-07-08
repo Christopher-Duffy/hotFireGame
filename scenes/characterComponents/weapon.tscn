@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://scenes/characterComponents/weaponSprite.tscn" type="PackedScene" id=1]
+
+[sub_resource type="CircleShape2D" id=1]
+
+[node name="weapon" type="Node2D"]
+
+[node name="playerWeaponHit" type="Area2D" parent="."]
+
+[node name="weaponShape" type="CollisionShape2D" parent="playerWeaponHit"]
+shape = SubResource( 1 )
+
+[node name="weaponSprite" parent="." instance=ExtResource( 1 )]
+visible = false

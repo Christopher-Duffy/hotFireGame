@@ -25,7 +25,7 @@ func _physics_process(_delta):
 			motion += Vector2(0, 1)
 		
 		if Input.is_action_pressed("attack"):
-			$WeaponAnimations.play("attack")
+			$Weapon.attack()
 		
 		rpc_unreliable('set_puppet_physics', position, motion)
 	else:
