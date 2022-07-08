@@ -1,47 +1,47 @@
 [gd_scene load_steps=47 format=2]
 
-[ext_resource path="res://images/dude/dude_shirt_run0001.png" type="Texture" id=1]
-[ext_resource path="res://images/dude/dude_idle0001.png" type="Texture" id=2]
-[ext_resource path="res://images/dude/dude_shirt_run0002.png" type="Texture" id=3]
-[ext_resource path="res://images/dude/dude_shirt_run0003.png" type="Texture" id=4]
-[ext_resource path="res://images/dude/dude_idle0002.png" type="Texture" id=5]
-[ext_resource path="res://images/dude/dude_shirt_idle0001.png" type="Texture" id=6]
-[ext_resource path="res://images/dude/dude_shirt_idle0002.png" type="Texture" id=7]
-[ext_resource path="res://images/dude/dude_shirt_run0000.png" type="Texture" id=8]
-[ext_resource path="res://images/dude/dude_run0002.png" type="Texture" id=9]
-[ext_resource path="res://images/dude/dude_run0003.png" type="Texture" id=10]
-[ext_resource path="res://images/dude/dude_shirt_idle0000.png" type="Texture" id=11]
-[ext_resource path="res://images/dude/dude_shirt_idle0003.png" type="Texture" id=12]
-[ext_resource path="res://images/dude/dude_run0000.png" type="Texture" id=13]
-[ext_resource path="res://images/dude/dude_idle0003.png" type="Texture" id=14]
+[ext_resource path="res://images/dude/armor/dude_gi0002.png" type="Texture" id=1]
+[ext_resource path="res://images/dude/dude_run0000.png" type="Texture" id=2]
+[ext_resource path="res://images/dude/armor/dude_chain0002.png" type="Texture" id=3]
+[ext_resource path="res://images/dude/armor/dude_gi0003.png" type="Texture" id=4]
+[ext_resource path="res://images/dude/armor/dude_robe0002.png" type="Texture" id=5]
+[ext_resource path="res://images/dude/armor/dude_chain0001.png" type="Texture" id=6]
+[ext_resource path="res://images/dude/dude_run0001.png" type="Texture" id=7]
+[ext_resource path="res://images/dude/dude_idle0003.png" type="Texture" id=8]
+[ext_resource path="res://images/dude/armor/dude_chain0003.png" type="Texture" id=9]
+[ext_resource path="res://images/dude/armor/dude_robe0001.png" type="Texture" id=10]
+[ext_resource path="res://images/dude/armor/dude_plate0000.png" type="Texture" id=11]
+[ext_resource path="res://images/dude/armor/dude_vest0000.png" type="Texture" id=12]
+[ext_resource path="res://images/dude/armor/dude_gi0001.png" type="Texture" id=13]
+[ext_resource path="res://images/dude/armor/dude_vest0003.png" type="Texture" id=14]
 [ext_resource path="res://images/dude/dude_idle0000.png" type="Texture" id=15]
-[ext_resource path="res://images/dude/dude_run0001.png" type="Texture" id=16]
-[ext_resource path="res://images/dude/dude_head0000.png" type="Texture" id=17]
-[ext_resource path="res://images/dude/hats/hornedHelmet.png" type="Texture" id=18]
-[ext_resource path="res://images/dude/armor/dude_chain0002.png" type="Texture" id=19]
-[ext_resource path="res://images/dude/armor/dude_chain0001.png" type="Texture" id=20]
-[ext_resource path="res://images/dude/armor/dude_chain0000.png" type="Texture" id=21]
-[ext_resource path="res://images/dude/armor/dude_robe0001.png" type="Texture" id=22]
-[ext_resource path="res://images/dude/armor/dude_vest0002.png" type="Texture" id=23]
-[ext_resource path="res://images/dude/armor/dude_chain0003.png" type="Texture" id=24]
-[ext_resource path="res://images/dude/armor/dude_plate0000.png" type="Texture" id=25]
-[ext_resource path="res://images/dude/armor/dude_vest0001.png" type="Texture" id=26]
-[ext_resource path="res://images/dude/armor/dude_gi0000.png" type="Texture" id=27]
-[ext_resource path="res://images/dude/armor/dude_plate0003.png" type="Texture" id=28]
-[ext_resource path="res://images/dude/armor/dude_vest0000.png" type="Texture" id=29]
-[ext_resource path="res://images/dude/armor/dude_robe0002.png" type="Texture" id=30]
-[ext_resource path="res://images/dude/armor/dude_robe0003.png" type="Texture" id=31]
-[ext_resource path="res://images/dude/armor/dude_plate0001.png" type="Texture" id=32]
-[ext_resource path="res://images/dude/armor/dude_plate0002.png" type="Texture" id=33]
-[ext_resource path="res://images/dude/armor/dude_gi0002.png" type="Texture" id=34]
-[ext_resource path="res://images/dude/armor/dude_gi0003.png" type="Texture" id=35]
-[ext_resource path="res://images/dude/armor/dude_gi0001.png" type="Texture" id=36]
-[ext_resource path="res://images/dude/armor/dude_vest0003.png" type="Texture" id=37]
-[ext_resource path="res://images/dude/armor/dude_robe0000.png" type="Texture" id=38]
-[ext_resource path="res://images/weapons/mainHand/sword.png" type="Texture" id=39]
-[ext_resource path="res://images/weapons/offHand/kiteShield.png" type="Texture" id=40]
-[ext_resource path="res://images/weapons/2hand/gronkclub.png" type="Texture" id=41]
-[ext_resource path="res://scripts/playerSprite.gd" type="Script" id=42]
+[ext_resource path="res://images/dude/armor/dude_robe0000.png" type="Texture" id=16]
+[ext_resource path="res://images/dude/dude_shirt_idle0003.png" type="Texture" id=17]
+[ext_resource path="res://images/dude/armor/dude_vest0001.png" type="Texture" id=18]
+[ext_resource path="res://images/dude/armor/dude_gi0000.png" type="Texture" id=19]
+[ext_resource path="res://images/dude/armor/dude_chain0000.png" type="Texture" id=20]
+[ext_resource path="res://images/dude/armor/dude_vest0002.png" type="Texture" id=21]
+[ext_resource path="res://images/dude/dude_head0000.png" type="Texture" id=22]
+[ext_resource path="res://images/dude/armor/dude_plate0003.png" type="Texture" id=23]
+[ext_resource path="res://images/dude/armor/dude_robe0003.png" type="Texture" id=24]
+[ext_resource path="res://images/dude/armor/dude_plate0001.png" type="Texture" id=25]
+[ext_resource path="res://images/dude/armor/dude_plate0002.png" type="Texture" id=26]
+[ext_resource path="res://scripts/characterComponents/playerSprite.gd" type="Script" id=27]
+[ext_resource path="res://images/weapons/2hand/gronkclub.png" type="Texture" id=28]
+[ext_resource path="res://images/weapons/offHand/kiteShield.png" type="Texture" id=29]
+[ext_resource path="res://images/weapons/mainHand/sword.png" type="Texture" id=30]
+[ext_resource path="res://images/dude/hats/plateHelm.png" type="Texture" id=31]
+[ext_resource path="res://images/dude/dude_shirt_run0001.png" type="Texture" id=32]
+[ext_resource path="res://images/dude/dude_run0003.png" type="Texture" id=33]
+[ext_resource path="res://images/dude/dude_shirt_run0003.png" type="Texture" id=34]
+[ext_resource path="res://images/dude/dude_shirt_idle0000.png" type="Texture" id=35]
+[ext_resource path="res://images/dude/dude_shirt_idle0002.png" type="Texture" id=36]
+[ext_resource path="res://images/dude/dude_shirt_run0002.png" type="Texture" id=37]
+[ext_resource path="res://images/dude/dude_idle0002.png" type="Texture" id=38]
+[ext_resource path="res://images/dude/dude_idle0001.png" type="Texture" id=39]
+[ext_resource path="res://images/dude/dude_shirt_idle0001.png" type="Texture" id=40]
+[ext_resource path="res://images/dude/dude_shirt_run0000.png" type="Texture" id=41]
+[ext_resource path="res://images/dude/dude_run0002.png" type="Texture" id=42]
 
 [sub_resource type="Animation" id=1]
 resource_name = "idle"
@@ -182,12 +182,12 @@ tracks/10/keys = {
 
 [sub_resource type="SpriteFrames" id=2]
 animations = [ {
-"frames": [ ExtResource( 15 ), ExtResource( 2 ), ExtResource( 5 ), ExtResource( 14 ) ],
+"frames": [ ExtResource( 15 ), ExtResource( 39 ), ExtResource( 38 ), ExtResource( 8 ) ],
 "loop": true,
 "name": "idle",
 "speed": 8.0
 }, {
-"frames": [ ExtResource( 13 ), ExtResource( 16 ), ExtResource( 9 ), ExtResource( 10 ) ],
+"frames": [ ExtResource( 2 ), ExtResource( 7 ), ExtResource( 42 ), ExtResource( 33 ) ],
 "loop": true,
 "name": "run",
 "speed": 8.0
@@ -195,12 +195,12 @@ animations = [ {
 
 [sub_resource type="SpriteFrames" id=3]
 animations = [ {
-"frames": [ ExtResource( 11 ), ExtResource( 6 ), ExtResource( 7 ), ExtResource( 12 ) ],
+"frames": [ ExtResource( 35 ), ExtResource( 40 ), ExtResource( 36 ), ExtResource( 17 ) ],
 "loop": true,
 "name": "idle",
 "speed": 8.0
 }, {
-"frames": [ ExtResource( 8 ), ExtResource( 1 ), ExtResource( 3 ), ExtResource( 4 ) ],
+"frames": [ ExtResource( 41 ), ExtResource( 32 ), ExtResource( 37 ), ExtResource( 34 ) ],
 "loop": true,
 "name": "run",
 "speed": 8.0
@@ -208,34 +208,34 @@ animations = [ {
 
 [sub_resource type="SpriteFrames" id=4]
 animations = [ {
-"frames": [ ExtResource( 25 ), ExtResource( 32 ), ExtResource( 33 ), ExtResource( 28 ) ],
+"frames": [ ExtResource( 11 ), ExtResource( 25 ), ExtResource( 26 ), ExtResource( 23 ) ],
 "loop": true,
 "name": "idle_plate",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 27 ), ExtResource( 36 ), ExtResource( 34 ), ExtResource( 35 ) ],
-"loop": true,
-"name": "idle_gi",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 38 ), ExtResource( 22 ), ExtResource( 30 ), ExtResource( 31 ) ],
+"frames": [ ExtResource( 16 ), ExtResource( 10 ), ExtResource( 5 ), ExtResource( 24 ) ],
 "loop": true,
 "name": "idle_robe",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 29 ), ExtResource( 26 ), ExtResource( 23 ), ExtResource( 37 ) ],
+"frames": [ ExtResource( 20 ), ExtResource( 6 ), ExtResource( 3 ), ExtResource( 9 ) ],
+"loop": true,
+"name": "idle_chain",
+"speed": 8.0
+}, {
+"frames": [ ExtResource( 12 ), ExtResource( 18 ), ExtResource( 21 ), ExtResource( 14 ) ],
 "loop": true,
 "name": "idle_vest",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 21 ), ExtResource( 20 ), ExtResource( 19 ), ExtResource( 24 ) ],
+"frames": [ ExtResource( 19 ), ExtResource( 13 ), ExtResource( 1 ), ExtResource( 4 ) ],
 "loop": true,
-"name": "idle_chain",
-"speed": 8.0
+"name": "idle_gi",
+"speed": 5.0
 } ]
 
 [node name="playerSprite" type="Node2D"]
-script = ExtResource( 42 )
+script = ExtResource( 27 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/idle = SubResource( 1 )
@@ -243,44 +243,48 @@ anims/idle = SubResource( 1 )
 [node name="MainHand" type="Sprite" parent="."]
 visible = false
 position = Vector2( 6, 4 )
-rotation = 0.133001
-texture = ExtResource( 39 )
+rotation = 0.150815
+texture = ExtResource( 30 )
 offset = Vector2( 0, -16 )
 
 [node name="Base" type="AnimatedSprite" parent="."]
 frames = SubResource( 2 )
 animation = "idle"
-frame = 1
+frame = 2
 
 [node name="Shirt" type="AnimatedSprite" parent="."]
 modulate = Color( 0.262745, 0.882353, 0.0666667, 1 )
 frames = SubResource( 3 )
 animation = "idle"
-frame = 1
+frame = 2
 
 [node name="Skin" type="Sprite" parent="."]
 modulate = Color( 0.835294, 0.694118, 0.517647, 1 )
 position = Vector2( 0, 1 )
-texture = ExtResource( 17 )
+texture = ExtResource( 22 )
 offset = Vector2( 0, -7 )
 
 [node name="Armor" type="AnimatedSprite" parent="."]
+visible = false
 frames = SubResource( 4 )
-animation = "idle_chain"
+animation = "idle_plate"
+frame = 2
 
 [node name="Hat" type="Sprite" parent="."]
+visible = false
 position = Vector2( 0, 1 )
-texture = ExtResource( 18 )
+texture = ExtResource( 31 )
 offset = Vector2( 0, -7 )
 
 [node name="OffHand" type="Sprite" parent="."]
 visible = false
 position = Vector2( -5, 5 )
-rotation = 0.00723949
-texture = ExtResource( 40 )
+rotation = -0.0447528
+texture = ExtResource( 29 )
 
 [node name="2Hand" type="Sprite" parent="."]
+visible = false
 position = Vector2( -2, 7 )
-rotation = 0.756826
-texture = ExtResource( 41 )
+rotation = 0.711333
+texture = ExtResource( 28 )
 offset = Vector2( 0, -24 )

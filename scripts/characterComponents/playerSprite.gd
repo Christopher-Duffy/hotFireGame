@@ -80,7 +80,6 @@ func setHatSpriteColor(color):
 func setArmorSpriteColor(color):
 	armorSprite.modulate = colorDict[color]
 
-
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass

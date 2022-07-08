@@ -19,7 +19,7 @@ var player_name = "The Warrior"
 var players = {}
 var players_ready = []
 
-var slimeScene= load("res://scenes/slime.tscn")
+var slimeScene= load("res://scenes/mobs/slime.tscn")
 
 # Signals to let lobby GUI know what's going on.
 signal player_list_changed()
@@ -88,7 +88,7 @@ remote func pre_start_game(spawn_points, path_nodes=null):
 	else:
 		world.get_node("TileMap").makeFromPathNodes(MAP_WIDTH,MAP_HEIGHT,path_nodes)
 	get_tree().get_root().get_node("Lobby").hide()
-	var player_scene = load("res://scenes/player.tscn")
+	var player_scene = load("res://scenes/players/player.tscn")
 
 	for p_id in spawn_points:
 		var spawn_pos = world.get_node("SpawnPoints/" + str(spawn_points[p_id])).position
