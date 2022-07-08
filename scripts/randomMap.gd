@@ -2,24 +2,51 @@ extends TileMap
 
 var SIZE = 10
 
-enum{
-	floor1,
-	wall1,
-	pillartopleft1,
-	pillartopright1,
-	topwallleft1,
-	topwallright1,
-	pillarbottomleft1,
-	pillarbottomright1,
-	righttopwall1,
-	lefttopwall1,
-	topwall1,
-	walltop1,
-	wallfloor1,
-	rightwallcorner1,
-	leftwallcorner1,
-	blackvoid
-}
+const FLOOR = 'floor'
+const WALL = 'wall'
+const ROOF = 'roof'
+const T = 'T'
+const B = 'B'
+const L = 'L'
+const R = 'R'
+const TL = 'TL'
+const TR = 'TR'
+const BL = 'BL'
+const BR = 'BR'
+
+func getTileDict():
+	var tiles = {}
+	for id in tile_set.get_tiles_ids():
+		var fullname = tile_set.tile_get_name(id)
+		var namesplit = fullname.split(' ')
+		var weight = 1
+		var tilename = '(blank)'
+		if len(namesplit) > 1:
+			tilename = namesplit[1]
+		if len(namesplit) > 2:
+			weight = float(namesplit[2])
+		var tile = {
+			id = id,
+			fullname = fullname,
+			type = namesplit[0],
+			name = tilename,
+			weight = weight
+		}
+		if tile.type in tiles:
+			tiles[tile.type].append(tile)
+		else:
+			tiles[tile.type] = [tile]
+	return tiles
+
+onready var TILES = getTileDict()
+
+func getTile(type, pos=null):
+	if pos != null:
+		type += '-' + pos
+	if type in TILES:
+		return TILES[type][0].id
+	else:
+		return TILES[ROOF][0].id
 
 var rng = RandomNumberGenerator.new()
 # Declare member variables here. Examples:
@@ -39,17 +66,23 @@ class PathNode:
 	var eastNode=null
 	var fromCell = null
 	func to_dict():
-		return {'x': x, 'y': y, 'visited': visited, 'north': north, 'south': south, 'east': east, 'west': west}
+		return {
+			x = x,
+			y = y,
+			north = north,
+			south = south,
+			east = east,
+			west = west
+		}
 
 func dictToPathNode(d):
 	var p = PathNode.new()
-	p.x = d['x']
-	p.y = d['y']
-	p.visited = d['visited']
-	p.north = d['north']
-	p.south = d['south']
-	p.east = d['east']
-	p.west = d['west']
+	p.x = d.x
+	p.y = d.y
+	p.north = d.north
+	p.south = d.south
+	p.east = d.east
+	p.west = d.west
 	return p
 
 # Called when the node enters the scene tree for the first time.
@@ -117,17 +150,17 @@ func makeChunk(pathNode):
 	var y = pathNode.y
 	for i in range( (x*SIZE) , ((x+1)*SIZE) ):
 		for j in range( (y*SIZE) , ((y+1)*SIZE) ):
-			set_cell(i,j,floor1)
+			set_cell(i,j,getTile(FLOOR))
 
 	if pathNode.east:
 		for i in range( (y*SIZE) , ((y+1)*SIZE)):
-			set_cell(((x+1)*SIZE)-2,i,topwallleft1)
-			set_cell(((x+1)*SIZE)-1,i,topwallright1)
+			set_cell(((x+1)*SIZE)-2,i,getTile(ROOF,L))
+			set_cell(((x+1)*SIZE)-1,i,getTile(ROOF,R))
 		
 	if pathNode.south:
 		for i in range( (x*SIZE) , ((x+1)*SIZE) ):
-			set_cell(i,(y+1)*SIZE-2,walltop1)
-			set_cell(i,(y+1)*SIZE-1,wallfloor1)
+			set_cell(i,(y+1)*SIZE-2,getTile(WALL,T))
+			set_cell(i,(y+1)*SIZE-1,getTile(WALL,B))
 	
 func makeMapFromPath(pathNodes):
 	for row in pathNodes:
@@ -136,16 +169,17 @@ func makeMapFromPath(pathNodes):
 
 func makeBorder(w,h):
 	for i in range(w):
-		set_cell(i,0,walltop1)
-		set_cell(i,1,wall1)
-		set_cell(i,2,wallfloor1)
-		set_cell(i,h-2,topwall1)
+		set_cell(i,0,getTile(WALL,T))
+		#set_cell(i,1,getTile(WALL))
+		#set_cell(i,2,getTile(WALL,B))
+		set_cell(i,1,getTile(WALL,B))
+		set_cell(i,h-2,getTile(ROOF,T))
 		set_cell(i,h-1,-1)
 	for i in range(h-2):
-		set_cell(0,i,topwallright1)
-		set_cell(w-1,i,topwallleft1)
-	set_cell(0,h-2,rightwallcorner1)
-	set_cell(w-1,h-2,leftwallcorner1)
+		set_cell(0,i,getTile(ROOF,R))
+		set_cell(w-1,i,getTile(ROOF,L))
+	set_cell(0,h-2,getTile(ROOF,BL))
+	set_cell(w-1,h-2,getTile(ROOF,BR))
 
 func setNeighbors (pathNodes):
 	for i in range(1,pathNodes.size()-1):
@@ -179,7 +213,3 @@ func makeFromPathNodes(width,height,pathNodes):
 	makeMapFromPath(pathNodes)
 	makeBorder(width*SIZE,height*SIZE)
 
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
