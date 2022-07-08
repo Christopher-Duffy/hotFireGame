@@ -208,21 +208,6 @@ animations = [ {
 
 [sub_resource type="SpriteFrames" id=4]
 animations = [ {
-"frames": [ ExtResource( 25 ), ExtResource( 32 ), ExtResource( 33 ), ExtResource( 28 ) ],
-"loop": true,
-"name": "idle_plate",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 27 ), ExtResource( 36 ), ExtResource( 34 ), ExtResource( 35 ) ],
-"loop": true,
-"name": "idle_gi",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 38 ), ExtResource( 22 ), ExtResource( 30 ), ExtResource( 31 ) ],
-"loop": true,
-"name": "idle_robe",
-"speed": 5.0
-}, {
 "frames": [ ExtResource( 29 ), ExtResource( 26 ), ExtResource( 23 ), ExtResource( 37 ) ],
 "loop": true,
 "name": "idle_vest",
@@ -232,6 +217,21 @@ animations = [ {
 "loop": true,
 "name": "idle_chain",
 "speed": 8.0
+}, {
+"frames": [ ExtResource( 38 ), ExtResource( 22 ), ExtResource( 30 ), ExtResource( 31 ) ],
+"loop": true,
+"name": "idle_robe",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 27 ), ExtResource( 36 ), ExtResource( 34 ), ExtResource( 35 ) ],
+"loop": true,
+"name": "idle_gi",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 25 ), ExtResource( 32 ), ExtResource( 33 ), ExtResource( 28 ) ],
+"loop": true,
+"name": "idle_plate",
+"speed": 5.0
 } ]
 
 [node name="playerSprite" type="Node2D"]
