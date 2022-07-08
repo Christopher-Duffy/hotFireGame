@@ -151,35 +151,52 @@ func makeChunk(pathNode):
 	for i in range( (x*SIZE) , ((x+1)*SIZE) ):
 		for j in range( (y*SIZE) , ((y+1)*SIZE) ):
 			set_cell(i,j,getTile(FLOOR))
-
-	if pathNode.east:
-		for i in range( (y*SIZE) , ((y+1)*SIZE)):
-			set_cell(((x+1)*SIZE)-2,i,getTile(ROOF,L))
-			set_cell(((x+1)*SIZE)-1,i,getTile(ROOF,R))
 		
 	if pathNode.south:
 		for i in range( (x*SIZE) , ((x+1)*SIZE) ):
-			set_cell(i,(y+1)*SIZE-2,getTile(WALL,T))
-			set_cell(i,(y+1)*SIZE-1,getTile(WALL,B))
+			set_cell(i,(y+1)*SIZE-2,getTile(ROOF,T))
+			set_cell(i,(y+1)*SIZE-1,getTile(ROOF,B))
+	
+	if pathNode.north:
+		for i in range( (x*SIZE) , ((x+1)*SIZE) ):
+			set_cell(i,(y)*SIZE,getTile(WALL,T))
+			set_cell(i,(y)*SIZE+1,getTile(WALL,B))
+
+	if pathNode.east:
+		for i in range( (y*SIZE) , ((y+1)*SIZE)):
+			set_cell(((x+1)*SIZE)-1,i,getTile(ROOF,L))
+
+	if pathNode.west:
+		for i in range( (y*SIZE) , ((y+1)*SIZE)):
+			set_cell((x)*SIZE,i,getTile(ROOF,R))
+	
+	# pillars
+	if !pathNode.north and !pathNode.west:
+		set_cell(x*SIZE,y*SIZE,getTile(WALL,TR))
+		set_cell(x*SIZE,y*SIZE+1,getTile(WALL,BR))
+	if !pathNode.north and !pathNode.east:
+		set_cell((x+1)*SIZE-1,y*SIZE,getTile(WALL,TL))
+		set_cell((x+1)*SIZE-1,y*SIZE+1,getTile(WALL,BL))
+	
+	if !pathNode.south and !pathNode.west:
+		set_cell(x*SIZE,(y+1)*SIZE-2,getTile(ROOF,TR))
+		set_cell(x*SIZE,(y+1)*SIZE-1,getTile(ROOF,R))
+	if !pathNode.south and !pathNode.east:
+		set_cell((x+1)*SIZE-1,(y+1)*SIZE-2,getTile(ROOF,TL))
+		set_cell((x+1)*SIZE-1,(y+1)*SIZE-1,getTile(ROOF,L))
+	
+	# concave corners
+	if pathNode.south and pathNode.west:
+		set_cell(x*SIZE,(y+1)*SIZE-2,getTile(ROOF,BL))
+		set_cell(x*SIZE,(y+1)*SIZE-1,getTile(ROOF))
+	if pathNode.south and pathNode.east:
+		set_cell((x+1)*SIZE-1,(y+1)*SIZE-2,getTile(ROOF,BR))
+		set_cell((x+1)*SIZE-1,(y+1)*SIZE-1,getTile(ROOF))
 	
 func makeMapFromPath(pathNodes):
 	for row in pathNodes:
 		for node in row:
 			makeChunk(node)
-
-func makeBorder(w,h):
-	for i in range(w):
-		set_cell(i,0,getTile(WALL,T))
-		#set_cell(i,1,getTile(WALL))
-		#set_cell(i,2,getTile(WALL,B))
-		set_cell(i,1,getTile(WALL,B))
-		set_cell(i,h-2,getTile(ROOF,T))
-		set_cell(i,h-1,-1)
-	for i in range(h-2):
-		set_cell(0,i,getTile(ROOF,R))
-		set_cell(w-1,i,getTile(ROOF,L))
-	set_cell(0,h-2,getTile(ROOF,BL))
-	set_cell(w-1,h-2,getTile(ROOF,BR))
 
 func setNeighbors (pathNodes):
 	for i in range(1,pathNodes.size()-1):
@@ -202,7 +219,6 @@ func makeRandom(width,height):
 			si.append(j.to_dict())
 	pathNodes = setNeighbors(pathNodes)
 	makeMapFromPath(pathNodes)
-	makeBorder(width*SIZE,height*SIZE)
 	return serialized
 
 func makeFromPathNodes(width,height,pathNodes):
@@ -211,5 +227,4 @@ func makeFromPathNodes(width,height,pathNodes):
 			pathNodes[i][j] = dictToPathNode(pathNodes[i][j])
 	pathNodes = setNeighbors(pathNodes)
 	makeMapFromPath(pathNodes)
-	makeBorder(width*SIZE,height*SIZE)
 
